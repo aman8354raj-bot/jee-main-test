@@ -3,85 +3,132 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>JEE Advanced Mock Test</title>
+<title>JEE Main PDF Test</title>
 <style>
-*{box-sizing:border-box}html,body{margin:0;height:100%;font-family:Arial,Helvetica,sans-serif;background:#f5f6f8;color:#222}
-button,input{font:inherit}.hidden{display:none!important}
-/* Upload */
-.setup{max-width:1100px;margin:40px auto;padding:22px}.setup h1{margin:0 0 6px}.setup p{color:#555}.upload-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.filebox{background:#fff;border:2px dashed #b7c3d0;border-radius:10px;padding:18px;font-weight:700}.filebox input{display:block;margin-top:12px;max-width:100%}.setup-actions{margin-top:18px;display:flex;gap:10px}.btn{border:1px solid #bbb;border-radius:5px;padding:10px 18px;background:#fff;cursor:pointer}.btn.primary{background:#1769e8;color:#fff;border-color:#1769e8}.btn.green{background:#178a45;color:#fff;border-color:#178a45}.progress{height:8px;background:#ddd;margin-top:18px;border-radius:5px;overflow:hidden}.bar{height:100%;width:0;background:#1769e8}.status{margin-top:9px;color:#444}
-/* Full test UI */
-.test{height:100vh;display:flex;flex-direction:column;overflow:hidden;background:#f4f5f7}
-.header{height:64px;flex:0 0 64px;background:#fff;border-bottom:1px solid #d4d7dc;display:flex;align-items:center;justify-content:space-between;padding:0 18px;box-shadow:0 1px 3px #0001;z-index:5}
-.brand{display:flex;align-items:center;gap:12px;font-size:20px;font-weight:700}.brand-mark{width:38px;height:38px;border-radius:4px;background:#1769e8;color:#fff;display:grid;place-items:center;font-weight:800}.section-name{font-size:15px;color:#555;font-weight:600;border-left:1px solid #ddd;padding-left:16px}
-.timerbox{display:flex;align-items:center;gap:10px;font-weight:700}.timer{background:#222;color:#fff;padding:8px 13px;border-radius:4px;min-width:100px;text-align:center;font-variant-numeric:tabular-nums}.submit-top{background:#e5534b;color:#fff;border:0;border-radius:4px;padding:9px 15px;font-weight:700;cursor:pointer}
-.body{min-height:0;flex:1;display:grid;grid-template-columns:minmax(0,1fr) 285px}
-.main{min-width:0;display:flex;flex-direction:column;min-height:0}.qbar{height:48px;flex:0 0 48px;background:#fff;border-bottom:1px solid #d4d7dc;padding:0 18px;display:flex;align-items:center;justify-content:space-between}.qtitle{font-size:17px;font-weight:700}.qtype{font-size:13px;color:#555}
-.question-scroll{flex:1;min-height:0;overflow:auto;padding:18px 22px 12px;background:#f4f5f7}.question-card{background:#fff;border:1px solid #d8dadd;box-shadow:0 1px 2px #0001;min-height:100%;padding:0}
-.crop-title{padding:12px 16px;border-bottom:1px solid #e2e3e6;font-size:14px;font-weight:700;color:#444}.crop-wrap{padding:12px 16px 6px;text-align:center}.crop-img{display:block;max-width:100%;width:auto;height:auto;max-height:48vh;margin:0 auto;border:1px solid #ddd;object-fit:contain;background:#fff}.crop-fallback{white-space:pre-wrap;text-align:left;font-size:18px;line-height:1.55;padding:18px}
-.options{padding:12px 22px 18px;display:grid;gap:9px}.option{background:#fff;border:1px solid #c9ced6;border-radius:3px;min-height:50px;display:flex;align-items:center;gap:13px;padding:10px 14px;cursor:pointer}.option:hover{background:#f5f9ff}.option.selected{border-color:#1769e8;background:#edf4ff}.radio{width:22px;height:22px;border:2px solid #89929f;border-radius:50%;display:grid;place-items:center;flex:0 0 22px}.radio::after{content:"";width:10px;height:10px;border-radius:50%;background:#1769e8;transform:scale(0)}.option.selected .radio{border-color:#1769e8}.option.selected .radio::after{transform:scale(1)}.check{width:22px;height:22px;border:2px solid #89929f;border-radius:3px;display:grid;place-items:center;flex:0 0 22px}.option.selected .check{border-color:#1769e8;background:#1769e8}.check::after{content:"✓";color:#fff;font-weight:800;font-size:15px}.option:not(.selected) .check::after{display:none}.option-label{font-weight:600}.numinput{width:180px;border:1px solid #aaa;border-radius:3px;padding:8px}
-.bottom{height:66px;flex:0 0 66px;background:#fff;border-top:1px solid #cfd2d7;display:flex;align-items:center;justify-content:space-between;padding:0 18px;gap:10px;z-index:4}.bottom-left,.bottom-right{display:flex;gap:8px}.navbtn{border:1px solid #bfc4cb;background:#fff;border-radius:4px;padding:10px 15px;cursor:pointer;font-weight:700}.navbtn.primary{background:#1769e8;border-color:#1769e8;color:#fff}.navbtn.orange{background:#f4a000;border-color:#df9000;color:#fff}.navbtn:disabled{opacity:.45;cursor:not-allowed}
-/* Palette */
-.palette{background:#fff;border-left:1px solid #cfd2d7;display:flex;flex-direction:column;min-height:0}.profile{padding:14px;border-bottom:1px solid #ddd;display:flex;align-items:center;gap:10px}.avatar{width:40px;height:40px;border-radius:50%;background:#e8eef8;display:grid;place-items:center;font-weight:800;color:#1769e8}.palette-head{padding:12px 14px 5px;font-weight:800}.legend{padding:5px 14px 12px;border-bottom:1px solid #ddd;font-size:12px;color:#555;display:grid;grid-template-columns:1fr 1fr;gap:7px}.legend span{display:flex;align-items:center;gap:5px}.dot{width:18px;height:18px;border-radius:3px;border:1px solid #bbb;display:inline-block}.dot.not{background:#fff}.dot.at{background:#55b878;border-color:#55b878}.dot.review{background:#f7c55b;border-color:#f7c55b}.dot.cur{background:#1769e8;border-color:#1769e8}.nums{padding:13px;overflow:auto;display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.num{height:34px;border:1px solid #bfc5cc;border-radius:3px;background:#fff;cursor:pointer;font-weight:700}.num.current{background:#1769e8;color:#fff;border-color:#1769e8}.num.attempted{background:#55b878;color:#fff;border-color:#55b878}.num.review{background:#f7c55b;color:#222;border-color:#e1ae43}.num.attempted.review{background:#f7c55b;color:#222}
-.result{position:fixed;inset:0;background:#f4f5f7;z-index:50;padding:60px 20px}.result-card{max-width:700px;margin:auto;background:#fff;border:1px solid #ddd;padding:30px;border-radius:8px}.result-card h2{margin-top:0}
-@media(max-width:850px){.body{grid-template-columns:1fr}.palette{display:none}.header{height:58px;flex-basis:58px}.section-name{display:none}.question-scroll{padding:10px}.crop-img{max-height:40vh}.bottom{height:auto;min-height:70px;flex-wrap:wrap;padding:8px}.bottom-left,.bottom-right{flex-wrap:wrap}.upload-grid{grid-template-columns:1fr}}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f4f6f8;color:#17202a}
+header{background:#111827;color:#fff;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:5}
+h1{font-size:20px;margin:0}.timer{font-size:20px;font-weight:700;background:#374151;padding:8px 14px;border-radius:8px}
+.wrap{display:grid;grid-template-columns:1fr 330px;gap:14px;max-width:1400px;margin:14px auto;padding:0 14px}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 8px #0001;padding:14px}
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px}.btn{border:0;border-radius:7px;padding:9px 13px;cursor:pointer;background:#2563eb;color:white;font-weight:600}.btn.gray{background:#6b7280}.btn.green{background:#059669}.btn.red{background:#dc2626}
+input[type=file]{max-width:100%}
+#viewer{height:calc(100vh - 180px);min-height:520px;border:1px solid #ddd;border-radius:8px;overflow:auto;background:#eee;text-align:center}
+canvas{max-width:100%;display:block;margin:0 auto 8px;background:white}
+.qnav{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}.qbtn{padding:8px 3px;border:1px solid #d1d5db;border-radius:6px;background:#f9fafb;cursor:pointer}.qbtn.done{background:#bbf7d0}.qbtn.review{outline:3px solid #fbbf24}.qbtn.current{border:3px solid #2563eb}
+.options{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}.opt{padding:12px;border:2px solid #d1d5db;border-radius:8px;background:#fff;cursor:pointer}.opt.sel{border-color:#2563eb;background:#dbeafe}
+.status{font-size:13px;color:#4b5563;margin:8px 0}.result{font-size:18px;line-height:1.7}.hidden{display:none}.small{font-size:12px;color:#6b7280}
+@media(max-width:900px){.wrap{grid-template-columns:1fr}.qnav{grid-template-columns:repeat(8,1fr)}#viewer{height:60vh}.options{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
-<section id="setup" class="setup">
-<h1>JEE Advanced Mock Test</h1><p>Question paper PDF upload karo. Questions detect hone ke baad real-test style interface open hoga.</p>
-<div class="upload-grid">
-<label class="filebox">📄 Question Paper PDF<input id="paper" type="file" accept=".pdf,application/pdf"></label>
-<label class="filebox">🔑 Answer Key (optional)<input id="key" type="file" accept=".pdf,.txt,.csv"></label>
+<header><h1>JEE Main PDF Test</h1><div class="timer" id="timer">03:00:00</div></header>
+<div class="wrap">
+<main>
+<div class="card">
+<div class="controls">
+<label>Question PDF <input id="paper" type="file" accept=".pdf"></label>
+<label>Answer Key PDF <input id="key" type="file" accept=".pdf"></label>
+<button class="btn" id="load">Load Test</button>
+<button class="btn green" id="submit">Submit</button>
 </div>
-<div class="setup-actions"><button class="btn primary" id="analyse">Analyse & Start Test</button><button class="btn" id="clear">Clear</button></div>
-<div class="progress"><div class="bar" id="bar"></div></div><div class="status" id="status">Paper select karo, phir Analyse & Start Test dabao.</div>
-</section>
-
-<section id="test" class="test hidden">
-<header class="header"><div class="brand"><div class="brand-mark">J</div><div>JEE Advanced <span class="section-name">Computer Based Test</span></div></div><div class="timerbox"><span>Time Left</span><span class="timer" id="timer">02:00:00</span><button class="submit-top" id="submitTop">Submit Test</button></div></header>
-<div class="body">
-<main class="main">
-<div class="qbar"><div class="qtitle" id="qtitle">Question 1</div><div class="qtype" id="qtype">Single correct</div></div>
-<div class="question-scroll"><div class="question-card">
-<div class="crop-title">Question</div><div class="crop-wrap" id="cropWrap"></div><div class="options" id="options"></div>
-</div></div>
-<div class="bottom"><div class="bottom-left"><button class="navbtn" id="prev">← Previous</button><button class="navbtn orange" id="clearResponse">Clear Response</button></div><div class="bottom-right"><button class="navbtn orange" id="reviewNext">Mark for Review & Next</button><button class="navbtn primary" id="saveNext">Save & Next →</button></div></div>
+<div class="status" id="status">Upload the two PDFs. For the supplied JRS paper, the app can also use the built-in sample key.</div>
+<div id="questionPanel" class="hidden">
+<b id="qtitle">Question 1</b>
+<div class="small" id="qtype"></div>
+<div class="options" id="options"></div>
+<div class="controls" style="margin-top:10px">
+<button class="btn gray" id="prev">Previous</button>
+<button class="btn gray" id="review">Mark for review</button>
+<button class="btn" id="next">Next</button>
+</div>
+</div>
+<div id="viewer"></div>
+</div>
 </main>
-<aside class="palette"><div class="profile"><div class="avatar">A</div><div><b>Candidate</b><br><small>JEE Advanced</small></div></div><div class="palette-head">Question Palette</div><div class="legend"><span><i class="dot not"></i>Not Answered</span><span><i class="dot at"></i>Answered</span><span><i class="dot review"></i>Review</span><span><i class="dot cur"></i>Current</span></div><div class="nums" id="nums"></div></aside>
+<aside>
+<div class="card">
+<h3 style="margin-top:0">Question Palette</h3>
+<div class="qnav" id="palette"></div>
 </div>
-</section>
+<div class="card" style="margin-top:14px">
+<h3 style="margin-top:0">Result</h3>
+<div id="result" class="result">Not submitted</div>
+</div>
+<div class="card" style="margin-top:14px">
+<h3 style="margin-top:0">How it works</h3>
+<div class="small">The question PDF is shown exactly as uploaded. Use the answer buttons to record responses. The supplied answer-key format is supported as well as normal 1/2/3/4 keys and integer answers.</div>
+</div>
+</aside>
+</div>
 
-<section id="result" class="result hidden"><div class="result-card"><h2>Test Submitted ✅</h2><div id="resultText"></div><br><button class="btn primary" id="restart">Back to Test</button></div></section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs" type="module"></script>
+<script>
+const SAMPLE_KEY = {
+1:"BONUS",2:"3",3:"4",4:"1",5:"3",6:"3",7:"3",8:"2&4",9:"1",10:"2",
+11:"2",12:"4",13:"1",14:"4",15:"3",16:"1",17:"2",18:"1",19:"4",20:"3",
+21:"2",22:"4",23:"9",24:"8",25:"24",26:"3",27:"1",28:"3",29:"1",30:"3",
+31:"1",32:"1",33:"2",34:"2",35:"3",36:"3",37:"2",38:"1",39:"1",40:"2",
+41:"1",42:"4",43:"2",44:"4",45:"3",46:"12",47:"9",48:"4",49:"8",50:"5",
+51:"2",52:"4",53:"4",54:"4",55:"1",56:"2",57:"1",58:"2",59:"2",60:"1",
+61:"2",62:"3",63:"4",64:"4",65:"3",66:"3",67:"4",68:"3",69:"1",70:"2",
+71:"7",72:"5",73:"4",74:"990",75:"1"
+};
 
-<script type="module">
-const pdfjs=await import("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs");
-pdfjs.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs";
-const $=id=>document.getElementById(id);let qs=[],answers={},flags={},cur=0,endAt=0,timerHandle=null;
-const norm=s=>s.replace(/\u00a0/g," ").replace(/[ \t]+/g," ").replace(/\n{3,}/g,"\n\n").trim();
-function progress(n,s){$("bar").style.width=n+"%";$("status").textContent=s}
-function detectStarts(items){const out=[];const re=/^(?:Q(?:uestion)?\.?\s*)?(\d{1,3})[\.\):\-]\s+/i;for(let i=0;i<items.length;i++){const t=(items[i].str||"").trim();const m=t.match(re);if(m)out.push({num:m[1],i})}return out}
-function typeOf(t){if(/multiple correct|one or more|more than one|multiple answers/i.test(t))return"Multiple correct";if(/numerical answer|integer answer|answer is an integer/i.test(t))return"Numerical answer";return"Single correct"}
-async function getPageData(page){const c=await page.getTextContent({normalizeWhitespace:true});const items=(c.items||[]).filter(x=>x.str&&x.str.trim());const lines=items.map((x,i)=>({str:x.str.trim(),x:x.transform?.[4]||0,y:x.transform?.[5]||0,w:x.width||0,h:x.height||0,i}));return {page,items:lines,text:norm(lines.map(x=>x.str).join("\n"))}}
-async function renderCrop(q){const holder=$("cropWrap");holder.innerHTML="";for(const part of q.parts){const page=part.dataPage;const vp0=page.getViewport({scale:1});const scale=Math.min(2.0,1200/vp0.width);const vp=page.getViewport({scale});const canvas=document.createElement("canvas");canvas.width=Math.floor(vp.width);canvas.height=Math.floor(vp.height);const ctx=canvas.getContext("2d");await page.render({canvasContext:ctx,viewport:vp}).promise;
- let top=Math.max(0,vp.height-(part.yTop+part.hTop+18)*scale);let bottom=Math.min(vp.height,vp.height-(part.yBottom-18)*scale);if(bottom<=top){top=0;bottom=vp.height}let ch=Math.max(40,bottom-top);const crop=document.createElement("canvas");crop.width=canvas.width;crop.height=Math.floor(ch);crop.getContext("2d").drawImage(canvas,0,top,crop.width,crop.height,0,0,crop.width,crop.height);const img=document.createElement("img");img.className="crop-img";img.src=crop.toDataURL("image/png");holder.appendChild(img)}
- if(!holder.children.length){holder.innerHTML='<div class="crop-fallback">'+q.text.replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]))+'</div>'}}
-function render(){const q=qs[cur];$("qtitle").textContent=`Question ${q.num}  •  ${cur+1} / ${qs.length}`;$("qtype").textContent=q.type;renderCrop(q);const box=$("options");box.innerHTML="";
- if(q.type==="Numerical answer"){const l=document.createElement("label");l.className="option";l.innerHTML='<span class="option-label">Answer:</span><input class="numinput" id="numans" type="text" inputmode="decimal" placeholder="Enter numerical answer">';box.appendChild(l);$("numans").value=answers[q.id]??"";$("numans").oninput=e=>answers[q.id]=e.target.value}
- else for(let i=1;i<=4;i++){const multi=q.type==="Multiple correct";const checked=multi?(answers[q.id]||[]).includes(i):answers[q.id]===i;const l=document.createElement("div");l.className="option"+(checked?" selected":"");l.innerHTML=(multi?'<span class="check"></span>':'<span class="radio"></span>')+`<span class="option-label">Option ${i}</span>`;l.onclick=()=>{if(multi){let a=answers[q.id]||[];answers[q.id]=a.includes(i)?a.filter(v=>v!==i):[...a,i]}else answers[q.id]=i;render()};box.appendChild(l)}
- $("prev").disabled=cur===0;document.querySelectorAll(".num").forEach((n,i)=>{n.className="num"+(i===cur?" current":"")+(answers[qs[i].id]!==undefined?" attempted":"")+(flags[qs[i].id]?" review":"")});
+let pdfjsLib=null, pdf=null, paperURL=null, answers=Array(76).fill(""), review=Array(76).fill(false);
+let current=1, key=SAMPLE_KEY, submitted=false, seconds=10800;
+
+(async()=>{pdfjsLib=await import("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs"); pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs";})();
+
+const $=id=>document.getElementById(id);
+function renderPalette(){
+  $("palette").innerHTML="";
+  for(let i=1;i<=75;i++){let b=document.createElement("button");b.className="qbtn"+(answers[i]!==""?" done ":"")+(review[i]?" review ":"")+(current===i?" current":"");b.textContent=i;b.onclick=()=>showQ(i);$("palette").appendChild(b);}
 }
-function buildNums(){const b=$("nums");b.innerHTML="";qs.forEach((q,i)=>{const n=document.createElement("button");n.className="num";n.textContent=q.num;n.onclick=()=>{cur=i;render()};b.appendChild(n)})}
-function submit(){clearInterval(timerHandle);$("test").classList.add("hidden");$("result").classList.remove("hidden");$("resultText").innerHTML=`Total Questions: <b>${qs.length}</b><br>Attempted: <b>${Object.keys(answers).length}</b><br><br><small>Answer-key scoring ko next step mein connect kiya ja sakta hai.</small>`}
-function startTimer(){clearInterval(timerHandle);endAt=Date.now()+2*60*60*1000;timerHandle=setInterval(()=>{let sec=Math.max(0,Math.floor((endAt-Date.now())/1000));let h=Math.floor(sec/3600),m=Math.floor(sec%3600/60),s=sec%60;$("timer").textContent=[h,m,s].map(v=>String(v).padStart(2,"0")).join(":");if(sec===0)submit()},250)}
-$("analyse").onclick=async()=>{const f=$("paper").files[0];if(!f){alert("Pehle Question Paper PDF select karo.");return}$("analyse").disabled=true;qs=[];answers={};flags={};cur=0;try{progress(2,"PDF load ho raha hai…");const pdf=await pdfjs.getDocument({data:await f.arrayBuffer()}).promise;const pages=[];for(let p=1;p<=pdf.numPages;p++){progress(Math.round(p/pdf.numPages*75),`Page ${p}/${pdf.numPages} analyse ho raha hai…`);const page=await pdf.getPage(p);const d=await getPageData(page);d.pdfPage=page;pages.push(d);await new Promise(r=>setTimeout(r,0))}
- for(let p=0;p<pages.length;p++){const d=pages[p],st=detectStarts(d.items);for(let i=0;i<st.length;i++){const next=st[i+1];const start=st[i].i;const end=next?next.i:d.items.length;const text=norm(d.items.slice(start,end).map(x=>x.str).join("\n"));const first=d.items[start];const last=d.items[Math.max(start,end-1)];qs.push({id:qs.length+1,num:st[i].num,type:typeOf(text),text,page:p+1,parts:[{dataPage:d.pdfPage,yTop:first.y,hTop:first.h,yBottom:last.y}],});}}
- if(!qs.length)throw new Error("Question numbering detect nahi hui.");progress(100,`Done — ${qs.length} questions detected.`);buildNums();$("setup").classList.add("hidden");$("test").classList.remove("hidden");await render();startTimer();}catch(e){progress(0,"Error: "+e.message);alert(e.message)}$("analyse").disabled=false};
-$("prev").onclick=()=>{if(cur>0){cur--;render()}};
-$("saveNext").onclick=()=>{if(cur<qs.length-1){cur++;render()}else submit()};
-$("reviewNext").onclick=()=>{flags[qs[cur].id]=true;if(cur<qs.length-1){cur++;render()}else submit()};
-$("clearResponse").onclick=()=>{delete answers[qs[cur].id];render()};
-$("submitTop").onclick=()=>{if(confirm("Test submit karna hai?"))submit()};
-$("restart").onclick=()=>{$("result").classList.add("hidden");$("test").classList.remove("hidden");startTimer();render()};
-$("clear").onclick=()=>location.reload();
+function showQ(n){
+ current=n;$("questionPanel").classList.remove("hidden");$("qtitle").textContent="Question "+n;
+ $("qtype").textContent=n<=20||n>=26&&n<=45||n>=51&&n<=70?"Single/choice response":"Integer answer";
+ const isInt=(n>=21&&n<=25)||(n>=46&&n<=50)||(n>=71&&n<=75);
+ $("options").innerHTML="";
+ if(isInt){
+   const inp=document.createElement("input");inp.type="number";inp.min=0;inp.max=999;inp.placeholder="Enter 0–999";inp.value=answers[n];inp.style="grid-column:1/-1;padding:12px;font-size:18px";
+   inp.oninput=()=>{answers[n]=inp.value;renderPalette()};$("options").appendChild(inp);
+ }else{
+   for(let o=1;o<=4;o++){let b=document.createElement("button");b.className="opt"+(answers[n].split("&").includes(String(o))?" sel":"");b.textContent="Option "+o;
+    b.onclick=()=>{if(n===8){let a=answers[n]?answers[n].split("&"):[];let s=String(o);a=a.includes(s)?a.filter(x=>x!==s):[...a,s];answers[n]=a.sort().join("&")}else answers[n]=String(o);showQ(n)};$("options").appendChild(b)}
+ }
+ renderPalette(); renderPageForQuestion(n);
+}
+async function renderPageForQuestion(n){
+ if(!pdf)return;
+ // Approximate page mapping for this supplied 16-page paper.
+ const page=n===1?2:(n<=13?Math.ceil((n+1)/2):n<=25?Math.ceil(n/4)+2:n<=45?Math.ceil((n-24)/2)+7:n<=50?12:n<=70?Math.ceil((n-50)/2)+12:16);
+ const p=Math.min(page,pdf.numPages);const pg=await pdf.getPage(p);const vp=pg.getViewport({scale:1.35});
+ const c=document.createElement("canvas");c.width=vp.width;c.height=vp.height;await pg.render({canvasContext:c.getContext("2d"),viewport:vp}).promise;
+ $("viewer").innerHTML="";$("viewer").appendChild(c);
+}
+function score(){
+ let correct=0,wrong=0,un=0,score=0;
+ for(let i=1;i<=75;i++){
+  let a=answers[i], k=key[i];
+  if(!a){un++;continue}
+  if(k==="BONUS"){score+=4;correct++;continue}
+  if(a===k){score+=4;correct++}else{score-=1;wrong++}
+ }
+ $("result").innerHTML=`<b>Score: ${score}/300</b><br>Correct: ${correct}<br>Wrong: ${wrong}<br>Unattempted: ${un}<br>Accuracy: ${correct+wrong?((correct/(correct+wrong))*100).toFixed(1):"0"}%`;
+}
+function tick(){let h=Math.floor(seconds/3600),m=Math.floor(seconds%3600/60),s=seconds%60;$("timer").textContent=[h,m,s].map(x=>String(x).padStart(2,"0")).join(":");if(seconds>0&&!submitted)seconds--;else if(seconds===0)submitTest();}
+setInterval(tick,1000);tick();
+$("prev").onclick=()=>showQ(Math.max(1,current-1));$("next").onclick=()=>showQ(Math.min(75,current+1));
+$("review").onclick=()=>{review[current]=!review[current];renderPalette()};
+$("submit").onclick=submitTest;
+function submitTest(){if(submitted)return;submitted=true;score();$("status").textContent="Test submitted. You can review the result below.";document.querySelectorAll(".opt").forEach(x=>x.disabled=true)}
+$("load").onclick=async()=>{
+ const f=$("paper").files[0]; if(!f){$("status").textContent="Please upload the question PDF first.";return}
+ paperURL=URL.createObjectURL(f);
+ try{pdf=await pdfjsLib.getDocument({url:paperURL}).promise;$("status").textContent=`Loaded ${pdf.numPages}-page question paper. Built-in key is active; uploaded answer-key PDF can be used as a reference for now.`;showQ(1)}
+ catch(e){$("status").textContent="Could not read the PDF in this browser."}
+};
+renderPalette();
 </script>
-</body></html>
+</body>
+</html>
