@@ -5,130 +5,19 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>JEE Main PDF Test</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f4f6f8;color:#17202a}
-header{background:#111827;color:#fff;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:5}
-h1{font-size:20px;margin:0}.timer{font-size:20px;font-weight:700;background:#374151;padding:8px 14px;border-radius:8px}
-.wrap{display:grid;grid-template-columns:1fr 330px;gap:14px;max-width:1400px;margin:14px auto;padding:0 14px}
-.card{background:#fff;border-radius:10px;box-shadow:0 2px 8px #0001;padding:14px}
-.controls{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px}.btn{border:0;border-radius:7px;padding:9px 13px;cursor:pointer;background:#2563eb;color:white;font-weight:600}.btn.gray{background:#6b7280}.btn.green{background:#059669}.btn.red{background:#dc2626}
-input[type=file]{max-width:100%}
-#viewer{height:calc(100vh - 180px);min-height:520px;border:1px solid #ddd;border-radius:8px;overflow:auto;background:#eee;text-align:center}
-canvas{max-width:100%;display:block;margin:0 auto 8px;background:white}
-.qnav{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}.qbtn{padding:8px 3px;border:1px solid #d1d5db;border-radius:6px;background:#f9fafb;cursor:pointer}.qbtn.done{background:#bbf7d0}.qbtn.review{outline:3px solid #fbbf24}.qbtn.current{border:3px solid #2563eb}
-.options{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}.opt{padding:12px;border:2px solid #d1d5db;border-radius:8px;background:#fff;cursor:pointer}.opt.sel{border-color:#2563eb;background:#dbeafe}
-.status{font-size:13px;color:#4b5563;margin:8px 0}.result{font-size:18px;line-height:1.7}.hidden{display:none}.small{font-size:12px;color:#6b7280}
-@media(max-width:900px){.wrap{grid-template-columns:1fr}.qnav{grid-template-columns:repeat(8,1fr)}#viewer{height:60vh}.options{grid-template-columns:repeat(2,1fr)}}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f4f6f8;color:#17202a}header{background:#111827;color:#fff;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:5}h1{font-size:20px;margin:0}.timer{font-size:20px;font-weight:700;background:#374151;padding:8px 14px;border-radius:8px}.wrap{display:grid;grid-template-columns:1fr 330px;gap:14px;max-width:1400px;margin:14px auto;padding:0 14px}.card{background:#fff;border-radius:10px;box-shadow:0 2px 8px #0001;padding:14px}.controls{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px}.btn{border:0;border-radius:7px;padding:9px 13px;cursor:pointer;background:#2563eb;color:white;font-weight:600}.btn.gray{background:#6b7280}.btn.green{background:#059669}.btn.red{background:#dc2626}input[type=file]{max-width:100%}#viewer{height:calc(100vh - 180px);min-height:520px;border:1px solid #ddd;border-radius:8px;overflow:auto;background:#eee;text-align:center}canvas{max-width:100%;display:block;margin:0 auto 8px;background:white}.qnav{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}.qbtn{padding:8px 3px;border:1px solid #d1d5db;border-radius:6px;background:#f9fafb;cursor:pointer}.qbtn.done{background:#bbf7d0}.qbtn.review{outline:3px solid #fbbf24}.qbtn.current{border:3px solid #2563eb}.qbtn.correct{background:#bbf7d0;border-color:#16a34a;color:#14532d}.qbtn.wrong{background:#fecaca;border-color:#dc2626;color:#7f1d1d}.qbtn.unattempted{background:#e5e7eb;color:#4b5563}.options{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}.opt{padding:12px;border:2px solid #d1d5db;border-radius:8px;background:#fff;cursor:pointer}.opt.sel{border-color:#2563eb;background:#dbeafe}.opt.answer-correct{border-color:#16a34a;background:#dcfce7;color:#14532d}.opt.answer-wrong{border-color:#dc2626;background:#fee2e2;color:#7f1d1d}.status{font-size:13px;color:#4b5563;margin:8px 0}.feedback{margin:10px 0;padding:10px 12px;border-radius:8px;font-weight:700}.feedback.correct{color:#166534;background:#dcfce7}.feedback.wrong{color:#991b1b;background:#fee2e2}.feedback.unattempted{color:#4b5563;background:#f3f4f6}.result{font-size:18px;line-height:1.7}.hidden{display:none}.small{font-size:12px;color:#6b7280}@media(max-width:900px){.wrap{grid-template-columns:1fr}.qnav{grid-template-columns:repeat(8,1fr)}#viewer{height:60vh}.options{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
 <header><h1>JEE Main PDF Test</h1><div class="timer" id="timer">03:00:00</div></header>
-<div class="wrap">
-<main>
-<div class="card">
-<div class="controls">
-<label>Question PDF <input id="paper" type="file" accept=".pdf"></label>
-<label>Answer Key PDF <input id="key" type="file" accept=".pdf"></label>
-<button class="btn" id="load">Load Test</button>
-<button class="btn green" id="submit">Submit</button>
-</div>
-<div class="status" id="status">Upload the two PDFs. For the supplied JRS paper, the app can also use the built-in sample key.</div>
-<div id="questionPanel" class="hidden">
-<b id="qtitle">Question 1</b>
-<div class="small" id="qtype"></div>
-<div class="options" id="options"></div>
-<div class="controls" style="margin-top:10px">
-<button class="btn gray" id="prev">Previous</button>
-<button class="btn gray" id="review">Mark for review</button>
-<button class="btn" id="next">Next</button>
-</div>
-</div>
-<div id="viewer"></div>
-</div>
-</main>
-<aside>
-<div class="card">
-<h3 style="margin-top:0">Question Palette</h3>
-<div class="qnav" id="palette"></div>
-</div>
-<div class="card" style="margin-top:14px">
-<h3 style="margin-top:0">Result</h3>
-<div id="result" class="result">Not submitted</div>
-</div>
-<div class="card" style="margin-top:14px">
-<h3 style="margin-top:0">How it works</h3>
-<div class="small">The question PDF is shown exactly as uploaded. Use the answer buttons to record responses. The supplied answer-key format is supported as well as normal 1/2/3/4 keys and integer answers.</div>
-</div>
-</aside>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs" type="module"></script>
-<script>
-const SAMPLE_KEY = {
-1:"BONUS",2:"3",3:"4",4:"1",5:"3",6:"3",7:"3",8:"2&4",9:"1",10:"2",
-11:"2",12:"4",13:"1",14:"4",15:"3",16:"1",17:"2",18:"1",19:"4",20:"3",
-21:"2",22:"4",23:"9",24:"8",25:"24",26:"3",27:"1",28:"3",29:"1",30:"3",
-31:"1",32:"1",33:"2",34:"2",35:"3",36:"3",37:"2",38:"1",39:"1",40:"2",
-41:"1",42:"4",43:"2",44:"4",45:"3",46:"12",47:"9",48:"4",49:"8",50:"5",
-51:"2",52:"4",53:"4",54:"4",55:"1",56:"2",57:"1",58:"2",59:"2",60:"1",
-61:"2",62:"3",63:"4",64:"4",65:"3",66:"3",67:"4",68:"3",69:"1",70:"2",
-71:"7",72:"5",73:"4",74:"990",75:"1"
-};
-
-let pdfjsLib=null, pdf=null, paperURL=null, answers=Array(76).fill(""), review=Array(76).fill(false);
-let current=1, key=SAMPLE_KEY, submitted=false, seconds=10800;
-
-(async()=>{pdfjsLib=await import("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs"); pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs";})();
-
-const $=id=>document.getElementById(id);
-function renderPalette(){
-  $("palette").innerHTML="";
-  for(let i=1;i<=75;i++){let b=document.createElement("button");b.className="qbtn"+(answers[i]!==""?" done ":"")+(review[i]?" review ":"")+(current===i?" current":"");b.textContent=i;b.onclick=()=>showQ(i);$("palette").appendChild(b);}
-}
-function showQ(n){
- current=n;$("questionPanel").classList.remove("hidden");$("qtitle").textContent="Question "+n;
- $("qtype").textContent=n<=20||n>=26&&n<=45||n>=51&&n<=70?"Single/choice response":"Integer answer";
- const isInt=(n>=21&&n<=25)||(n>=46&&n<=50)||(n>=71&&n<=75);
- $("options").innerHTML="";
- if(isInt){
-   const inp=document.createElement("input");inp.type="number";inp.min=0;inp.max=999;inp.placeholder="Enter 0–999";inp.value=answers[n];inp.style="grid-column:1/-1;padding:12px;font-size:18px";
-   inp.oninput=()=>{answers[n]=inp.value;renderPalette()};$("options").appendChild(inp);
- }else{
-   for(let o=1;o<=4;o++){let b=document.createElement("button");b.className="opt"+(answers[n].split("&").includes(String(o))?" sel":"");b.textContent="Option "+o;
-    b.onclick=()=>{if(n===8){let a=answers[n]?answers[n].split("&"):[];let s=String(o);a=a.includes(s)?a.filter(x=>x!==s):[...a,s];answers[n]=a.sort().join("&")}else answers[n]=String(o);showQ(n)};$("options").appendChild(b)}
- }
- renderPalette(); renderPageForQuestion(n);
-}
-async function renderPageForQuestion(n){
- if(!pdf)return;
- // Approximate page mapping for this supplied 16-page paper.
- const page=n===1?2:(n<=13?Math.ceil((n+1)/2):n<=25?Math.ceil(n/4)+2:n<=45?Math.ceil((n-24)/2)+7:n<=50?12:n<=70?Math.ceil((n-50)/2)+12:16);
- const p=Math.min(page,pdf.numPages);const pg=await pdf.getPage(p);const vp=pg.getViewport({scale:1.35});
- const c=document.createElement("canvas");c.width=vp.width;c.height=vp.height;await pg.render({canvasContext:c.getContext("2d"),viewport:vp}).promise;
- $("viewer").innerHTML="";$("viewer").appendChild(c);
-}
-function score(){
- let correct=0,wrong=0,un=0,score=0;
- for(let i=1;i<=75;i++){
-  let a=answers[i], k=key[i];
-  if(!a){un++;continue}
-  if(k==="BONUS"){score+=4;correct++;continue}
-  if(a===k){score+=4;correct++}else{score-=1;wrong++}
- }
- $("result").innerHTML=`<b>Score: ${score}/300</b><br>Correct: ${correct}<br>Wrong: ${wrong}<br>Unattempted: ${un}<br>Accuracy: ${correct+wrong?((correct/(correct+wrong))*100).toFixed(1):"0"}%`;
-}
-function tick(){let h=Math.floor(seconds/3600),m=Math.floor(seconds%3600/60),s=seconds%60;$("timer").textContent=[h,m,s].map(x=>String(x).padStart(2,"0")).join(":");if(seconds>0&&!submitted)seconds--;else if(seconds===0)submitTest();}
-setInterval(tick,1000);tick();
-$("prev").onclick=()=>showQ(Math.max(1,current-1));$("next").onclick=()=>showQ(Math.min(75,current+1));
-$("review").onclick=()=>{review[current]=!review[current];renderPalette()};
-$("submit").onclick=submitTest;
-function submitTest(){if(submitted)return;submitted=true;score();$("status").textContent="Test submitted. You can review the result below.";document.querySelectorAll(".opt").forEach(x=>x.disabled=true)}
-$("load").onclick=async()=>{
- const f=$("paper").files[0]; if(!f){$("status").textContent="Please upload the question PDF first.";return}
- paperURL=URL.createObjectURL(f);
- try{pdf=await pdfjsLib.getDocument({url:paperURL}).promise;$("status").textContent=`Loaded ${pdf.numPages}-page question paper. Built-in key is active; uploaded answer-key PDF can be used as a reference for now.`;showQ(1)}
- catch(e){$("status").textContent="Could not read the PDF in this browser."}
-};
-renderPalette();
-</script>
-</body>
-</html>
+<div class="wrap"><main><div class="card"><div class="controls"><label>Question PDF <input id="paper" type="file" accept=".pdf"></label><label>Answer Key PDF <input id="key" type="file" accept=".pdf"></label><button class="btn" id="load">Load Test</button><button class="btn green" id="submit">Submit</button></div><div class="status" id="status">Upload the two PDFs. The built-in sample key is active for the supplied JRS paper.</div><div id="questionPanel" class="hidden"><b id="qtitle">Question 1</b><div class="small" id="qtype"></div><div id="feedback" class="feedback hidden"></div><div class="options" id="options"></div><div class="controls" style="margin-top:10px"><button class="btn gray" id="prev">Previous</button><button class="btn gray" id="review">Mark for review</button><button class="btn" id="next">Next</button></div></div><div id="viewer"></div></div></main><aside><div class="card"><h3 style="margin-top:0">Question Palette</h3><div class="small">After submission: green = correct, red = wrong, grey = unattempted.</div><br><div class="qnav" id="palette"></div></div><div class="card" style="margin-top:14px"><h3 style="margin-top:0">Result</h3><div id="result" class="result">Not submitted</div></div><div class="card" style="margin-top:14px"><h3 style="margin-top:0">How it works</h3><div class="small">After submitting, open any question from the palette to see your answer and the correct answer. The question PDF is displayed exactly as uploaded.</div></div></aside></div>
+<script type="module">
+const SAMPLE_KEY={1:"BONUS",2:"3",3:"4",4:"1",5:"3",6:"3",7:"3",8:"2&4",9:"1",10:"2",11:"2",12:"4",13:"1",14:"4",15:"3",16:"1",17:"2",18:"1",19:"4",20:"3",21:"2",22:"4",23:"9",24:"8",25:"24",26:"3",27:"1",28:"3",29:"1",30:"3",31:"1",32:"1",33:"2",34:"2",35:"3",36:"3",37:"2",38:"1",39:"1",40:"2",41:"1",42:"4",43:"2",44:"4",45:"3",46:"12",47:"9",48:"4",49:"8",50:"5",51:"2",52:"4",53:"4",54:"4",55:"1",56:"2",57:"1",58:"2",59:"2",60:"1",61:"2",62:"3",63:"4",64:"4",65:"3",66:"3",67:"4",68:"3",69:"1",70:"2",71:"7",72:"5",73:"4",74:"990",75:"1"};
+const pdfjsLib=await import("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.min.mjs");pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.4.168/pdf.worker.min.mjs";const $=id=>document.getElementById(id);let pdf=null,paperURL=null,answers=Array(76).fill(""),review=Array(76).fill(false),current=1,key=SAMPLE_KEY,submitted=false,seconds=10800;
+function outcome(n){const a=answers[n],k=key[n];if(!a)return"unattempted";return k==="BONUS"||a===k?"correct":"wrong"}
+function renderPalette(){$("palette").innerHTML="";for(let i=1;i<=75;i++){let b=document.createElement("button"),state=submitted?outcome(i):(answers[i]!==""?"done":"");b.className="qbtn "+state+(review[i]?" review":"")+(current===i?" current":"");b.textContent=i;b.title=submitted?`Question ${i}: ${state}`:`Question ${i}`;b.onclick=()=>showQ(i);$("palette").appendChild(b)}}
+function renderFeedback(n){const f=$("feedback");if(!submitted){f.className="feedback hidden";return}const state=outcome(n),a=answers[n]||"Not attempted",k=key[n]==="BONUS"?"Bonus question":key[n];let msg=state==="correct"?`Correct ✓ Your answer: ${a}`:state==="wrong"?`Wrong ✗ Your answer: ${a} | Correct answer: ${k}`:`Not attempted | Correct answer: ${k}`;f.textContent=msg;f.className="feedback "+state}
+function showQ(n){current=n;$("questionPanel").classList.remove("hidden");$("qtitle").textContent="Question "+n;const isInt=(n>=21&&n<=25)||(n>=46&&n<=50)||(n>=71&&n<=75);$("qtype").textContent=isInt?"Integer answer":"Single/choice response";$("options").innerHTML="";renderFeedback(n);if(isInt){let inp=document.createElement("input");inp.type="number";inp.min=0;inp.max=999;inp.placeholder="Enter 0–999";inp.value=answers[n];inp.disabled=submitted;inp.style="grid-column:1/-1;padding:12px;font-size:18px";inp.oninput=()=>{answers[n]=inp.value;renderPalette()};$("options").appendChild(inp)}else{for(let o=1;o<=4;o++){let b=document.createElement("button"),isSelected=answers[n].split("&").includes(String(o));b.className="opt"+(isSelected?" sel":"");b.textContent="Option "+o;b.disabled=submitted;if(submitted){if(key[n].split("&").includes(String(o)))b.classList.add("answer-correct");if(isSelected&&outcome(n)==="wrong")b.classList.add("answer-wrong")}b.onclick=()=>{if(n===8){let a=answers[n]?answers[n].split("&"):[],s=String(o);a=a.includes(s)?a.filter(x=>x!==s):[...a,s];answers[n]=a.sort().join("&")}else answers[n]=String(o);showQ(n)};$("options").appendChild(b)}}renderPalette();renderPageForQuestion(n)}
+async function renderPageForQuestion(n){if(!pdf)return;const page=n===1?2:(n<=13?Math.ceil((n+1)/2):n<=25?Math.ceil(n/4)+2:n<=45?Math.ceil((n-24)/2)+7:n<=50?12:n<=70?Math.ceil((n-50)/2)+12:16),pg=await pdf.getPage(Math.min(page,pdf.numPages)),vp=pg.getViewport({scale:1.35}),c=document.createElement("canvas");c.width=vp.width;c.height=vp.height;await pg.render({canvasContext:c.getContext("2d"),viewport:vp}).promise;$("viewer").innerHTML="";$("viewer").appendChild(c)}
+function score(){let correct=0,wrong=0,un=0,score=0;for(let i=1;i<=75;i++){let s=outcome(i);if(s==="unattempted"){un++;continue}if(s==="correct"){score+=4;correct++}else{score-=1;wrong++}}$("result").innerHTML=`<b>Score: ${score}/300</b><br>Correct: ${correct}<br>Wrong: ${wrong}<br>Unattempted: ${un}<br>Accuracy: ${correct+wrong?((correct/(correct+wrong))*100).toFixed(1):"0"}%`}function submitTest(){if(submitted)return;submitted=true;score();$("status").textContent="Test submitted. Green palette buttons are correct, red are wrong, and grey are unattempted. Click any question to review it.";showQ(current)}function tick(){let h=Math.floor(seconds/3600),m=Math.floor(seconds%3600/60),s=seconds%60;$("timer").textContent=[h,m,s].map(x=>String(x).padStart(2,"0")).join(":");if(seconds>0&&!submitted)seconds--;else if(seconds===0)submitTest()}setInterval(tick,1000);tick();$("prev").onclick=()=>showQ(Math.max(1,current-1));$("next").onclick=()=>showQ(Math.min(75,current+1));$("review").onclick=()=>{if(!submitted){review[current]=!review[current];renderPalette()}};$("submit").onclick=submitTest;$("load").onclick=async()=>{const f=$("paper").files[0];if(!f){$("status").textContent="Please upload the question PDF first.";return}paperURL=URL.createObjectURL(f);try{pdf=await pdfjsLib.getDocument({url:paperURL}).promise;$("status").textContent=`Loaded ${pdf.numPages}-page question paper. Built-in key is active.`;showQ(1)}catch(e){$("status").textContent="Could not read the PDF in this browser."}};renderPalette();
+</script></body></html>
